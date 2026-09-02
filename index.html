@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharath Kumar Chaduvula | Frontend Developer</title>
+  <meta name="description" content="Portfolio of Bharath Kumar Chaduvula — Frontend Developer | HTML5, CSS3, JavaScript, React.js" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050d1a;
+      --bg2: #0a1628;
+      --bg3: #0f2040;
+      --accent: #3b82f6;
+      --accent2: #60a5fa;
+      --accent3: #1d4ed8;
+      --green: #10b981;
+      --text: #e2e8f0;
+      --text2: #94a3b8;
+      --text3: #64748b;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --card: rgba(15,32,64,0.8);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent3); border-radius: 3px; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(5,13,26,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+      transition: all 0.3s;
+    }
+    .nav-logo {
+      font-size: 18px; font-weight: 700; color: var(--accent2);
+      font-family: 'Fira Code', monospace;
+      letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 500; color: var(--text2);
+      text-decoration: none; transition: color 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .nav-links a:hover { color: var(--accent2); }
+    .nav-cta {
+      padding: 8px 20px; background: var(--accent);
+      color: white; border-radius: 6px; font-size: 13px;
+      font-weight: 600; text-decoration: none;
+      transition: all 0.2s; border: 1px solid var(--accent);
+    }
+    .nav-cta:hover { background: transparent; color: var(--accent2); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0 5%;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(59,130,246,0.12) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 40% at 80% 80%, rgba(16,185,129,0.06) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.25);
+      color: var(--accent2); font-size: 12px; font-weight: 500;
+      padding: 6px 14px; border-radius: 20px; margin-bottom: 24px;
+      font-family: 'Fira Code', monospace;
+    }
+    .hero-tag::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: blink 1.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+    .hero-content h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -1.5px;
+    }
+    .hero-content h1 .name { color: white; }
+    .hero-content h1 .accent { color: var(--accent2); }
+    .hero-role {
+      font-size: clamp(16px, 2.5vw, 22px);
+      color: var(--text2); margin-top: 16px; font-weight: 400;
+      min-height: 32px;
+    }
+    .cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent2); margin-left: 2px; animation: cursor 0.9s infinite; vertical-align: text-bottom; }
+    @keyframes cursor { 0%,100%{opacity:1} 50%{opacity:0} }
+    .hero-desc {
+      font-size: 15px; color: var(--text2); margin-top: 20px;
+      line-height: 1.75; max-width: 560px;
+    }
+    .hero-btns { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 13px 28px; background: var(--accent);
+      color: white; border-radius: 8px; font-size: 14px;
+      font-weight: 600; text-decoration: none;
+      transition: all 0.25s; border: 2px solid var(--accent);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--accent3); border-color: var(--accent3); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(59,130,246,0.3); }
+    .btn-secondary {
+      padding: 13px 28px; background: transparent;
+      color: var(--accent2); border-radius: 8px; font-size: 14px;
+      font-weight: 600; text-decoration: none;
+      transition: all 0.25s; border: 2px solid var(--glass-border);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--accent2); background: rgba(59,130,246,0.08); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; gap: 36px; margin-top: 44px;
+      padding-top: 32px; border-top: 1px solid var(--glass-border);
+    }
+    .stat-item .num {
+      font-size: 26px; font-weight: 800; color: white;
+      font-family: 'Fira Code', monospace;
+    }
+    .stat-item .num span { color: var(--accent2); }
+    .stat-item .label { font-size: 11px; color: var(--text3); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.8px; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 5%; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--accent2); font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      font-family: 'Fira Code', monospace; margin-bottom: 12px;
+    }
+    .section-tag::before { content:''; width:30px; height:1px; background:var(--accent2); }
+    .section-title {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800; color: white;
+      letter-spacing: -1px; margin-bottom: 10px;
+    }
+    .section-sub { font-size: 15px; color: var(--text2); line-height: 1.7; max-width: 560px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 48px; }
+    .about-avatar-wrap {
+      position: relative;
+    }
+    .about-avatar {
+      width: 100%; max-width: 320px;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--bg3), var(--bg));
+      border: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 90px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .about-avatar::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(59,130,246,0.15), transparent);
+    }
+    .about-avatar-ring {
+      position: absolute; top: -20px; right: -20px;
+      width: 140px; height: 140px; border-radius: 50%;
+      border: 2px dashed rgba(59,130,246,0.3);
+      animation: spin 12s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .about-badge {
+      position: absolute; bottom: -12px; right: -12px;
+      background: var(--green); color: white;
+      font-size: 11px; font-weight: 700; padding: 8px 14px;
+      border-radius: 8px; box-shadow: 0 4px 20px rgba(16,185,129,0.4);
+    }
+    .about-text p { font-size: 15px; color: var(--text2); line-height: 1.8; margin-bottom: 14px; }
+    .about-text strong { color: var(--accent2); }
+    .about-info { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+    .info-item { font-size: 12.5px; color: var(--text2); }
+    .info-item strong { color: var(--text); display: block; margin-bottom: 2px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text3); }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--bg); }
+    .skills-wrap { margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--glass-border);
+      border-radius: 14px; padding: 24px;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .skill-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--accent), var(--green));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .skill-card:hover::before { transform: scaleX(1); }
+    .skill-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .skill-card-icon { font-size: 28px; margin-bottom: 12px; }
+    .skill-card h3 { font-size: 14px; font-weight: 700; color: white; margin-bottom: 14px; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .stag {
+      font-size: 11px; padding: 4px 10px;
+      border-radius: 5px; font-weight: 500;
+      border: 1px solid;
+    }
+    .stag.blue { background: rgba(59,130,246,0.1); color: #93c5fd; border-color: rgba(59,130,246,0.25); }
+    .stag.green { background: rgba(16,185,129,0.1); color: #6ee7b7; border-color: rgba(16,185,129,0.25); }
+    .stag.purple { background: rgba(139,92,246,0.1); color: #c4b5fd; border-color: rgba(139,92,246,0.25); }
+    .stag.orange { background: rgba(245,158,11,0.1); color: #fcd34d; border-color: rgba(245,158,11,0.25); }
+
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--bg2); }
+    .timeline { margin-top: 48px; position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 0;
+      width: 2px; background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-dot {
+      position: absolute; left: -35px; top: 6px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); border: 3px solid var(--bg2);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.3);
+    }
+    .timeline-card {
+      background: var(--card); border: 1px solid var(--glass-border);
+      border-radius: 14px; padding: 24px 28px;
+      transition: all 0.3s;
+    }
+    .timeline-card:hover { border-color: rgba(59,130,246,0.3); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+    .timeline-header h3 { font-size: 16px; font-weight: 700; color: white; }
+    .timeline-badge {
+      font-size: 11px; padding: 4px 12px; border-radius: 20px;
+      background: rgba(16,185,129,0.1); color: var(--green);
+      border: 1px solid rgba(16,185,129,0.25); font-weight: 500;
+    }
+    .timeline-company { font-size: 13px; color: var(--accent2); margin: 4px 0 6px; font-weight: 500; }
+    .timeline-meta { font-size: 12px; color: var(--text3); margin-bottom: 14px; font-family: 'Fira Code', monospace; }
+    .timeline-card ul { padding-left: 16px; }
+    .timeline-card ul li { font-size: 13.5px; color: var(--text2); line-height: 1.7; margin-bottom: 6px; }
+    .timeline-card ul li strong { color: var(--accent2); }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 22px; margin-top: 48px; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 28px;
+      transition: all 0.3s; display: flex; flex-direction: column;
+    }
+    .project-card:hover { border-color: rgba(59,130,246,0.35); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+    .project-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .project-icon { font-size: 32px; }
+    .project-links { display: flex; gap: 10px; }
+    .project-link {
+      width: 34px; height: 34px; border-radius: 8px;
+      border: 1px solid var(--glass-border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text2); text-decoration: none; font-size: 14px;
+      transition: all 0.2s;
+    }
+    .project-link:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(59,130,246,0.08); }
+    .project-card h3 { font-size: 16px; font-weight: 700; color: white; margin-bottom: 10px; }
+    .project-card p { font-size: 13px; color: var(--text2); line-height: 1.7; margin-bottom: 18px; flex: 1; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pstag {
+      font-size: 10.5px; padding: 3px 9px; border-radius: 4px;
+      background: rgba(59,130,246,0.08); color: #93c5fd;
+      border: 1px solid rgba(59,130,246,0.2); font-weight: 500;
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--bg2); }
+    .ach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 48px; }
+    .ach-card {
+      background: var(--card); border: 1px solid var(--glass-border);
+      border-radius: 14px; padding: 24px; text-align: center;
+      transition: all 0.3s;
+    }
+    .ach-card:hover { border-color: rgba(59,130,246,0.3); transform: translateY(-4px); }
+    .ach-icon { font-size: 36px; margin-bottom: 14px; }
+    .ach-num { font-size: 30px; font-weight: 800; color: white; font-family: 'Fira Code', monospace; }
+    .ach-num span { color: var(--accent2); font-size: 20px; }
+    .ach-label { font-size: 13px; color: var(--text2); margin-top: 6px; line-height: 1.5; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg); }
+    .contact-wrap { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .contact-info h3 { font-size: 22px; font-weight: 700; color: white; margin-bottom: 16px; }
+    .contact-info p { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 28px; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px;
+      background: var(--card); border: 1px solid var(--glass-border);
+      border-radius: 12px; text-decoration: none;
+      transition: all 0.2s; color: var(--text2);
+    }
+    .contact-link:hover { border-color: rgba(59,130,246,0.35); color: var(--accent2); background: rgba(59,130,246,0.06); }
+    .contact-link-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(59,130,246,0.1); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .contact-link-text .title { font-size: 13px; font-weight: 600; color: var(--text); }
+    .contact-link-text .val { font-size: 11.5px; color: var(--text3); }
+    .availability-card {
+      background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(16,185,129,0.08));
+      border: 1px solid rgba(59,130,246,0.2); border-radius: 16px; padding: 28px;
+    }
+    .availability-card h3 { font-size: 18px; font-weight: 700; color: white; margin-bottom: 6px; }
+    .availability-card .green-dot { display: inline-flex; align-items: center; gap: 7px; color: var(--green); font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+    .availability-card .green-dot::before { content:''; width:8px; height:8px; border-radius:50%; background:var(--green); animation: blink 1.5s infinite; }
+    .avail-items { display: flex; flex-direction: column; gap: 10px; }
+    .avail-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text2); }
+    .avail-item::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 14px; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--glass-border);
+      padding: 28px 5%; text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--text3); }
+    footer a { color: var(--accent2); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { gap: 20px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── FADE IN ── */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BKC<span>.</span>dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://bharath-kumar-chaduvula.github.io/resume" class="nav-cta" target="_blank">📄 Resume</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for Work — Immediate Joiner</div>
+    <h1>
+      <span class="name">Bharath Kumar<br/>Chaduvula</span>
+    </h1>
+    <div class="hero-role">
+      <span id="typed-text"></span><span class="cursor"></span>
+    </div>
+    <p class="hero-desc">
+      B.Tech CSE final-year student passionate about building responsive, modern web experiences.
+      Strong communicator with a natural aptitude for <strong style="color:var(--accent2)">client interaction and technical presentations</strong>.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">🚀 View My Work</a>
+      <a href="https://bharath-kumar-chaduvula.github.io/resume" class="btn-secondary" target="_blank">📄 Resume</a>
+      <a href="#contact" class="btn-secondary">📬 Contact Me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="num">8.30<span>/10</span></div>
+        <div class="label">B.Tech CGPA</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">99<span>%</span></div>
+        <div class="label">Class X Score</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">2<span>mo</span></div>
+        <div class="label">Internship</div>
+      </div>
+      <div class="stat-item">
+        <div class="num">3<span>+</span></div>
+        <div class="label">Projects Built</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-up">
+    <div class="section-tag">About Me</div>
+    <h2 class="section-title">Who I Am</h2>
+  </div>
+  <div class="about-grid fade-up">
+    <div class="about-avatar-wrap">
+      <div class="about-avatar">👨‍💻</div>
+      <div class="about-avatar-ring"></div>
+      <div class="about-badge">🎓 ICFAI University</div>
+    </div>
+    <div class="about-text">
+      <p>
+        I'm <strong>Bharath Kumar Chaduvula</strong>, a B.Tech CSE undergraduate in my final year at ICFAI University,
+        Srikakulam, Andhra Pradesh. I have a strong foundation in <strong>front-end web development</strong> and a
+        deep curiosity for understanding software engineering at its core.
+      </p>
+      <p>
+        I completed a professional internship at <strong>Shripriti Educational & IT Hub</strong>, where I built
+        real-world web interfaces and sharpened my skills in HTML5, CSS3, and JavaScript. I'm currently
+        upskilling in <strong>React.js and Node.js</strong>.
+      </p>
+      <p>
+        Beyond code, I have strong <strong>communication and analytical skills</strong> — I can explain
+        complex technical concepts in simple terms, making me effective in client-facing and collaborative roles.
+      </p>
+      <div class="about-info">
+        <div class="info-item"><strong>Location</strong>Srikakulam, Andhra Pradesh</div>
+        <div class="info-item"><strong>Open To</strong>Noida / New Delhi / Remote</div>
+        <div class="info-item"><strong>Degree</strong>B.Tech CSE — Final Year</div>
+        <div class="info-item"><strong>Email</strong>bharath.kumar.chaduvula.0@gmail.com</div>
+        <div class="info-item"><strong>Languages</strong>Telugu · English · Hindi</div>
+        <div class="info-item"><strong>Joining</strong>Immediate Joiner ✅</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-up">
+    <div class="section-tag">Technical Skills</div>
+    <h2 class="section-title">What I Work With</h2>
+    <p class="section-sub">My current toolkit — and what I'm actively learning to level up.</p>
+  </div>
+  <div class="skills-wrap fade-up">
+    <div class="skill-card">
+      <div class="skill-card-icon">🌐</div>
+      <h3>Frontend Development</h3>
+      <div class="skill-tags">
+        <span class="stag blue">HTML5</span>
+        <span class="stag blue">CSS3</span>
+        <span class="stag blue">JavaScript (ES6+)</span>
+        <span class="stag blue">Responsive Design</span>
+        <span class="stag blue">Flexbox / Grid</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">⚛️</div>
+      <h3>Currently Learning</h3>
+      <div class="skill-tags">
+        <span class="stag green">React.js</span>
+        <span class="stag green">Node.js</span>
+        <span class="stag green">REST APIs</span>
+        <span class="stag green">npm Ecosystem</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🛠️</div>
+      <h3>Tools & Platforms</h3>
+      <div class="skill-tags">
+        <span class="stag purple">Git</span>
+        <span class="stag purple">GitHub</span>
+        <span class="stag purple">GitHub Pages</span>
+        <span class="stag purple">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">💬</div>
+      <h3>Soft & Sales Skills</h3>
+      <div class="skill-tags">
+        <span class="stag orange">Client Communication</span>
+        <span class="stag orange">Technical Demos</span>
+        <span class="stag orange">Analytical Thinking</span>
+        <span class="stag orange">Problem-Solving</span>
+        <span class="stag orange">Self-Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="fade-up">
+    <div class="section-tag">Experience</div>
+    <h2 class="section-title">Work History</h2>
+  </div>
+  <div class="timeline fade-up">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-card">
+        <div class="timeline-header">
+          <h3>Front-End Development Intern</h3>
+          <span class="timeline-badge">Completed ✓</span>
+        </div>
+        <div class="timeline-company">Shripriti Educational & IT Hub</div>
+        <div class="timeline-meta">📅 Jun 2025 – Aug 2025 &nbsp;·&nbsp; 2 Months &nbsp;·&nbsp; 🌐 Remote (Online)</div>
+        <ul>
+          <li>Built structured, responsive web pages using <strong>HTML5, CSS3, and JavaScript</strong>; applied semantic markup and accessibility best practices.</li>
+          <li>Delivered project outputs on schedule — demonstrating <strong>self-management, discipline, and professional accountability</strong> in a remote setting.</li>
+          <li>Communicated progress and deliverables asynchronously — honed <strong>written communication and stakeholder reporting</strong> skills.</li>
+          <li>Gained end-to-end web development exposure: planning, architecture, coding, reviewing, and delivery.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="fade-up">
+    <div class="section-tag">Projects</div>
+    <h2 class="section-title">Things I've Built</h2>
+    <p class="section-sub">Self-initiated projects that showcase my skills and initiative.</p>
+  </div>
+  <div class="projects-grid fade-up">
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🌐</div>
+        <div class="project-links">
+          <a href="https://github.com/Bharath-Kumar-Chaduvula" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <h3>Personal Portfolio Website</h3>
+      <p>A fully responsive personal portfolio website built from scratch using HTML5, CSS3, and JavaScript. Implements mobile-first design, smooth animations, and a clean modern UI. Deployed on GitHub Pages.</p>
+      <div class="project-stack">
+        <span class="pstag">HTML5</span>
+        <span class="pstag">CSS3</span>
+        <span class="pstag">JavaScript</span>
+        <span class="pstag">GitHub Pages</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">📄</div>
+        <div class="project-links">
+          <a href="https://bharath-kumar-chaduvula.github.io/resume" class="project-link" target="_blank" title="Live">↗</a>
+        </div>
+      </div>
+      <h3>Online Resume & CV Website</h3>
+      <p>Professional interactive resume hosted on GitHub Pages — accessible via a public URL just like a real portfolio. Features a PDF-style layout with all professional details, skills, and achievements.</p>
+      <div class="project-stack">
+        <span class="pstag">HTML5</span>
+        <span class="pstag">CSS3</span>
+        <span class="pstag">GitHub Pages</span>
+        <span class="pstag">Git</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-icon">🐙</div>
+        <div class="project-links">
+          <a href="https://github.com/Bharath-Kumar-Chaduvula" class="project-link" target="_blank" title="GitHub">⌥</a>
+        </div>
+      </div>
+      <h3>GitHub Profile README</h3>
+      <p>Crafted a professional GitHub profile README with dynamic badges, profile view counters, GitHub stats cards, and structured professional sections — making a strong first impression to recruiters and developers.</p>
+      <div class="project-stack">
+        <span class="pstag">Markdown</span>
+        <span class="pstag">GitHub</span>
+        <span class="pstag">Shields.io</span>
+        <span class="pstag">GitHub Stats</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="fade-up">
+    <div class="section-tag">Achievements</div>
+    <h2 class="section-title">Academic Excellence</h2>
+  </div>
+  <div class="ach-grid fade-up">
+    <div class="ach-card">
+      <div class="ach-icon">🏆</div>
+      <div class="ach-num">99.17<span>%</span></div>
+      <div class="ach-label">Class X SSC — 595/600<br/><small style="color:var(--text3)">100/100 in Maths & Telugu</small></div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">🌟</div>
+      <div class="ach-num">92.6<span>%</span></div>
+      <div class="ach-label">Class XII MPC — A Grade<br/><small style="color:var(--text3)">Board of Intermediate, A.P.</small></div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">📚</div>
+      <div class="ach-num">8.30<span>/10</span></div>
+      <div class="ach-label">B.Tech CGPA<br/><small style="color:var(--text3)">ICFAI University — Final Year</small></div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">💼</div>
+      <div class="ach-num">2<span>mo</span></div>
+      <div class="ach-label">Professional Internship<br/><small style="color:var(--text3)">Shripriti Educational & IT Hub</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-up">
+    <div class="section-tag">Contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+  </div>
+  <div class="contact-wrap fade-up">
+    <div class="contact-info">
+      <h3>Get In Touch</h3>
+      <p>I'm actively looking for opportunities. Whether you have a job offer, a project idea, or just want to connect — feel free to reach out!</p>
+      <div class="contact-links">
+        <a href="mailto:bharath.kumar.chaduvula.0@gmail.com" class="contact-link">
+          <div class="contact-link-icon">📧</div>
+          <div class="contact-link-text">
+            <div class="title">Email</div>
+            <div class="val">bharath.kumar.chaduvula.0@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+918328191216" class="contact-link">
+          <div class="contact-link-icon">📞</div>
+          <div class="contact-link-text">
+            <div class="title">Phone</div>
+            <div class="val">+91 83281 91216</div>
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/bharath-kumar-chaduvula-5245533b5" class="contact-link" target="_blank">
+          <div class="contact-link-icon">💼</div>
+          <div class="contact-link-text">
+            <div class="title">LinkedIn</div>
+            <div class="val">linkedin.com/in/bharath-kumar-chaduvula</div>
+          </div>
+        </a>
+        <a href="https://github.com/Bharath-Kumar-Chaduvula" class="contact-link" target="_blank">
+          <div class="contact-link-icon">🐙</div>
+          <div class="contact-link-text">
+            <div class="title">GitHub</div>
+            <div class="val">github.com/Bharath-Kumar-Chaduvula</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="availability-card">
+      <h3>Currently Available</h3>
+      <div class="green-dot">Open to Work</div>
+      <div class="avail-items">
+        <div class="avail-item">Immediate Joiner — No notice period</div>
+        <div class="avail-item">Open to relocate — Noida / Kirti Nagar, Delhi</div>
+        <div class="avail-item">On-site / Hybrid / Remote — all fine</div>
+        <div class="avail-item">Web Developer roles — Frontend / Full Stack</div>
+        <div class="avail-item">Sales Engineer / Affiliate Marketing roles</div>
+        <div class="avail-item">Eligible: B.Tech CSE — Web Dev + Sales tracks</div>
+      </div>
+      <div style="margin-top:24px;">
+        <a href="https://bharath-kumar-chaduvula.github.io/resume/cv.html" target="_blank"
+           style="display:block;text-align:center;padding:13px;background:var(--accent);color:white;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;transition:all 0.2s;"
+           onmouseover="this.style.background='#1d4ed8'" onmouseout="this.style.background='#3b82f6'">
+          📋 Download Full CV
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built with ❤️ by <a href="https://github.com/Bharath-Kumar-Chaduvula">Bharath Kumar Chaduvula</a> &nbsp;·&nbsp; Srikakulam, Andhra Pradesh, India</p>
+</footer>
+
+<script>
+  // Typing animation
+  const roles = [
+    'Frontend Developer',
+    'HTML5 · CSS3 · JavaScript',
+    'Web Developer',
+    'React.js Learner',
+    'Immediate Joiner 🚀',
+  ];
+  let ri = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed-text');
+  function type() {
+    const word = roles[ri];
+    el.textContent = deleting ? word.slice(0, ci--) : word.slice(0, ci++);
+    if (!deleting && ci > word.length) { deleting = true; setTimeout(type, 1400); return; }
+    if (deleting && ci < 0) { deleting = false; ri = (ri + 1) % roles.length; ci = 0; }
+    setTimeout(type, deleting ? 45 : 90);
+  }
+  type();
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
